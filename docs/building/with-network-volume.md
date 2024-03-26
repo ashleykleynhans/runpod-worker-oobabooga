@@ -55,10 +55,11 @@ cd /workspace/text-generation-webui
 python3 download-model.py TheBloke/Synthia-34B-v1.2-GPTQ \
   --output /workspace/text-generation-webui/models
 ```
-Everything should now be installed on your Network Volume and it
+## Final steps
+1. Everything should now be installed on your Network Volume and it
    should be safe to terminate the pod.
-Sign up for a Docker hub account if you don't already have one.
-Build the Docker image on your local machine and push to Docker hub:
+2. Sign up for a Docker hub account if you don't already have one.
+3. Build the Docker image on your local machine and push to Docker hub:
 ```bash
 docker build -t dockerhub-username/runpod-worker-oobabooga:latest -f Dockerfile.Network_Volume .
 docker login
