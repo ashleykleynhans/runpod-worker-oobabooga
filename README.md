@@ -1,6 +1,6 @@
-# oobabooga | RunPod Serverless Worker
+# oobabooga | Runpod Serverless Worker
 
-This is the source code for a [RunPod](https://runpod.io?ref=2xxro4sy)
+This is the source code for a [Runpod](https://runpod.io?ref=2xxro4sy)
 Serverless worker that uses [Oobabooga Text Generation](
 https://github.com/oobabooga/text-generation-webui) API for
 LLM text generation AI tasks.
@@ -19,9 +19,9 @@ There are two options:
 1. [Network Volume](docs/building/with-network-volume.md)
 2. [Standalone](docs/building/without-network-volume.md) (without Network Volume)
 
-## RunPod  API Endpoint
+## Runpod API Endpoint
 
-You can send requests to your RunPod API Endpoint using the `/run`
+You can send requests to your Runpod API Endpoint using the `/run`
 or `/runsync` endpoints.
 
 Requests sent to the `/run` endpoint will be handled asynchronously,
@@ -77,9 +77,9 @@ with the `input`, and returns the `output` in the JSON response.
 
 ## Additional Resources
 
-- [Postman Collection for this Worker](RunPod_Oobabooga_Worker.postman_collection.json)
+- [Postman Collection for this Worker](Runpod_Oobabooga_Worker.postman_collection.json)
 - [Generative Labs YouTube Tutorials](https://www.youtube.com/@generativelabs)
-- [Getting Started With RunPod Serverless](https://trapdoor.cloud/getting-started-with-runpod-serverless/)
+- [Getting Started With Runpod Serverless](https://trapdoor.cloud/getting-started-with-runpod-serverless/)
 - [Serverless | Create a Custom Basic API](https://blog.runpod.io/serverless-create-a-basic-api/)
 
 ## Community and Contributing

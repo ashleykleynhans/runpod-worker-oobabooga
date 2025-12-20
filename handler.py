@@ -100,7 +100,7 @@ def validate_payload(event):
 
 
 # ---------------------------------------------------------------------------- #
-# RunPod Handler                                                               #
+# Runpod Handler                                                               #
 # ---------------------------------------------------------------------------- #
 def handler(event):
     validated_api = validate_api(event)
@@ -140,7 +140,7 @@ def handler(event):
 if __name__ == '__main__':
     wait_for_service(url=f'{BASE_URI}/model')
     logger.log('Oobabooga API is ready', 'INFO')
-    logger.log('Starting RunPod Serverless...', 'INFO')
+    logger.log('Starting Runpod Serverless...', 'INFO')
     runpod.serverless.start(
         {
             'handler': handler
