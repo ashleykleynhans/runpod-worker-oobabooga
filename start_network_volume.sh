@@ -29,9 +29,9 @@ if [ -d "/runpod-volume/text-generation-webui/models/${MODEL}" ]; then
     --api-blocking-port 5000 \
     --api-streaming-port 5005 &> /runpod-volume/logs/textgen.log &
 
-  echo "Starting RunPod Handler"
+  echo "Starting Runpod Handler"
   export PYTHONUNBUFFERED=1
-  python3 -u /rp_handler.py
+  python3 -u /handler.py
 else
   echo "Model directory not found!"
 fi

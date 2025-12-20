@@ -1,4 +1,4 @@
-FROM nvidia/cuda:12.1.1-cudnn8-devel-ubuntu22.04
+FROM nvidia/cuda:12.8.1-cudnn-devel-ubuntu22.04
 
 ENV DEBIAN_FRONTEND=noninteractive \
     PIP_PREFER_BINARY=1 \
@@ -20,7 +20,7 @@ RUN apt update && \
 
 # Docker container start script
 COPY start_network_volume.sh /start.sh
-COPY rp_handler.py /
+COPY handler.py /
 COPY schemas /schemas
 
 # Start the container

@@ -1,6 +1,6 @@
-FROM nvidia/cuda:12.1.1-cudnn8-devel-ubuntu22.04
+FROM nvidia/cuda:12.8.1-cudnn-devel-ubuntu22.04
 
-ARG OOBABOOGA_COMMIT=2af7e382b121f2eae16dd1f7ace621d31028b319
+ARG OOBABOOGA_RELEASE=v3.22
 ARG MODEL="TheBloke/Synthia-34B-v1.2-GPTQ"
 
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -24,24 +24,20 @@ RUN apt update && \
 WORKDIR /workspace
 RUN git clone https://github.com/oobabooga/text-generation-webui && \
     cd text-generation-webui && \
-    git checkout ${OOBABOOGA_COMMIT} && \
-    pip3 install --no-cache-dir torch==2.1.2 torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121 && \
-    pip3 install --no-cache-dir xformers && \
-    pip3 install -r requirements.txt && \
+    git checkout ${OOBABOOGA_RELEASE} && \
+    pip3 install --no-cache-dir torch==2.7.1 torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128 && \
+    pip3 install -r requirements/full/requirements.txt && \
     bash -c 'for req in extensions/*/requirements.txt ; do pip3 install -r "$req" ; done' && \
-    mkdir -p repositories && \
-    cd repositories && \
-    git clone https://github.com/turboderp/exllama && \
-    pip3 install -r exllama/requirements.txt
+    pip3 install --force-reinstall numpy==2.2.* pandas
 
 # Fetch the model
 COPY download_model.py fetch_model.py /
-RUN pip3 install huggingface_hub runpod && \
+RUN pip3 install huggingface_hub runpod==1.7.10 && \
     /fetch_model.py ${MODEL} /workspace/text-generation-webui/models
 
 # Docker container start script
 COPY start_standalone.sh /start.sh
-COPY rp_handler.py /
+COPY handler.py /
 COPY schemas /schemas
 
 # Start the container

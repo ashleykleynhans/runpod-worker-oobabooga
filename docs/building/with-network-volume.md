@@ -5,8 +5,8 @@ build a light weight Docker image that runs everything
 from the Network volume without installing the application
 inside the Docker image.
 
-1. [Create a RunPod Account](https://runpod.io?ref=2xxro4sy).
-2. Create a [RunPod Network Volume](https://www.runpod.io/console/user/storage). You'll need about 15GB of space, plus space for your model(s).
+1. [Create a Runpod Account](https://runpod.io?ref=2xxro4sy).
+2. Create a [Runpod Network Volume](https://www.runpod.io/console/user/storage). You'll need about 15GB of space, plus space for your model(s).
 3. Attach the Network Volume to a Secure Cloud [GPU pod](https://www.runpod.io/console/gpu-secure-cloud).
 4. Select the RunPod Pytorch 2.1 Template.
 5. Deploy the GPU Cloud pod.
