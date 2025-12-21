@@ -20,7 +20,7 @@ if [ -d "/workspace/text-generation-webui/models/${MODEL}" ]; then
     --listen-port 3000 \
     --api-port 5000 \
     --extensions api \
-    --trust-remote-code &> /runpod-volume/logs/textgen.log &
+    --trust-remote-code &> /workspace/logs/textgen.log &
 
   echo "Starting Runpod Handler"
   export PYTHONUNBUFFERED=1
