@@ -8,7 +8,7 @@ inside the Docker image.
 1. [Create a Runpod Account](https://runpod.io?ref=2xxro4sy).
 2. Create a [Runpod Network Volume](https://www.runpod.io/console/user/storage). You'll need about 15GB of space, plus space for your model(s).
 3. Attach the Network Volume to a Secure Cloud [GPU pod](https://www.runpod.io/console/gpu-secure-cloud).
-4. Select the RunPod Pytorch 2.1 Template.
+4. Select the RunPod Pytorch 2.4.0 Template.
 5. Deploy the GPU Cloud pod.
 6. Once the pod is up, open a Terminal and install the required
    dependencies. This can either be done by using the installation
@@ -33,21 +33,17 @@ chmod +x install.sh
 cd /workspace
 git clone https://github.com/oobabooga/text-generation-webui.git
 cd text-generation-webui
-git checkout 2af7e382b121f2eae16dd1f7ace621d31028b319
+git checkout v3.22
 python3 -m venv /workspace/venv
 source /workspace/venv/bin/activate
-pip3 install --no-cache-dir torch==2.1.2 torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
-pip3 install --no-cache-dir xformers
-pip3 install -r requirements.txt
+pip3 install --no-cache-dir torch==2.7.1 torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
+pip3 install -r requirements/full/requirements.txt
 bash -c 'for req in extensions/*/requirements.txt ; do pip3 install -r "$req" ; done'
-mkdir -p repositories
-cd repositories
-git clone https://github.com/turboderp/exllama
-pip3 install -r exllama/requirements.txt
+pip3 install --force-reinstall numpy==2.2.* pandas
 ```
 7. Install the Serverless dependencies:
 ```bash
-pip3 install huggingface_hub runpod
+pip3 install huggingface_hub runpod==1.7.10
 ```
 8. Download a model, for example `TheBloke/Synthia-34B-v1.2-GPTQ`:
 ```bash

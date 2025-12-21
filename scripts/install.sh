@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 
 RELEASE="v3.22"
 TORCH_VERSION="2.7.1"
