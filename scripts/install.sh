@@ -3,6 +3,7 @@ set -e
 
 RELEASE="v3.22"
 TORCH_VERSION="2.7.1"
+PYTHON_VERSION="3.11"
 MODEL="TheBloke/Synthia-34B-v1.2-GPTQ"
 
 echo "Deleting Oobabooga Text Generation Web UI"
@@ -20,6 +21,33 @@ git checkout ${RELEASE}
 echo "Installing Ubuntu updates"
 apt update
 apt -y upgrade
+
+echo "Installing Python ${PYTHON_VERSION}"
+if [ -n "${PYTHON_VERSION}" ]; then
+    # Install Python from deadsnakes PPA
+    add-apt-repository ppa:deadsnakes/ppa
+    apt install -y --no-install-recommends \
+        "python${PYTHON_VERSION}" \
+        "python${PYTHON_VERSION}-dev" \
+        "python${PYTHON_VERSION}-venv" \
+        "python3-tk"
+
+    # Link Python
+    rm /usr/bin/python
+    ln -s /usr/bin/python${PYTHON_VERSION} /usr/bin/python
+    rm /usr/bin/python3
+    ln -s /usr/bin/python${PYTHON_VERSION} /usr/bin/python3
+
+    # Install pip
+    curl -sS https://bootstrap.pypa.io/get-pip.py | python${PYTHON_VERSION}
+
+    # Upgrade pip
+    python3 -m pip install --upgrade --no-cache-dir pip
+
+    # Create symlink for pip3
+    rm -f /usr/bin/pip3
+    ln -s /usr/local/bin/pip3 /usr/bin/pip3
+fi
 
 echo "Creating and activating venv"
 cd /workspace/text-generation-webui
