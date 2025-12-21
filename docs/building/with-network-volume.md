@@ -34,34 +34,6 @@ cd /workspace
 git clone https://github.com/oobabooga/text-generation-webui.git
 cd text-generation-webui
 git checkout v3.22
-
-PYTHON_VERSION="3.11"
-if [ -n "${PYTHON_VERSION}" ]; then
-    # Install Python from deadsnakes PPA
-    add-apt-repository ppa:deadsnakes/ppa
-    apt install -y --no-install-recommends \
-        "python${PYTHON_VERSION}" \
-        "python${PYTHON_VERSION}-dev" \
-        "python${PYTHON_VERSION}-venv" \
-        "python3-tk"
-
-    # Link Python
-    rm /usr/bin/python
-    ln -s /usr/bin/python${PYTHON_VERSION} /usr/bin/python
-    rm /usr/bin/python3
-    ln -s /usr/bin/python${PYTHON_VERSION} /usr/bin/python3
-
-    # Install pip
-    curl -sS https://bootstrap.pypa.io/get-pip.py | python${PYTHON_VERSION}
-
-    # Upgrade pip
-    python3 -m pip install --upgrade --no-cache-dir pip
-
-    # Create symlink for pip3
-    rm -f /usr/bin/pip3
-    ln -s /usr/local/bin/pip3 /usr/bin/pip3
-fi
-
 python3 -m venv /workspace/venv
 source /workspace/venv/bin/activate
 pip3 install --no-cache-dir torch==2.7.1 torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
