@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-RELEASE="OOBABOOGA_RELEASE"
+RELEASE="v3.22"
 TORCH_VERSION="2.7.1"
 MODEL="TheBloke/Synthia-34B-v1.2-GPTQ"
 
