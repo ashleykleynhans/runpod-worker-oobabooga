@@ -7,17 +7,24 @@ from runpod.serverless.modules.rp_logger import RunPodLogger
 from requests.adapters import HTTPAdapter, Retry
 from schemas.api import API_SCHEMA
 from schemas.chat import CHAT_SCHEMA
-from schemas.generate import GENERATE_SCHEMA
-from schemas.token_count import TOKEN_COUNT_SCHEMA
+from schemas.generate import COMPLETIONS_SCHEMA
 from schemas.model import MODEL_SCHEMA
 
-BASE_URI = 'http://127.0.0.1:5000/api/v1'
+BASE_URI = 'http://127.0.0.1:5000'
 TIMEOUT = 600
 
+# Endpoint mapping from user-friendly names to OpenAI API paths
+ENDPOINT_MAPPING = {
+    'completions': '/v1/completions',
+    'chat/completions': '/v1/chat/completions',
+    'models': '/v1/models',
+    'internal/model/load': '/v1/internal/model/load',
+    'internal/model/list': '/v1/internal/model/list',
+}
+
 VALIDATION_SCHEMAS = {
-    'chat': CHAT_SCHEMA,
-    'generate': GENERATE_SCHEMA,
-    'token-count': TOKEN_COUNT_SCHEMA
+    'completions': COMPLETIONS_SCHEMA,
+    'chat/completions': CHAT_SCHEMA,
 }
 
 session = requests.Session()
@@ -50,14 +57,14 @@ def wait_for_service(url):
 
 def send_get_request(endpoint):
     return session.get(
-        url=f'{BASE_URI}/{endpoint}',
+        url=f'{BASE_URI}{endpoint}',
         timeout=TIMEOUT
     )
 
 
 def send_post_request(endpoint, payload):
     return session.post(
-        url=f'{BASE_URI}/{endpoint}',
+        url=f'{BASE_URI}{endpoint}',
         json=payload,
         timeout=TIMEOUT
     )
@@ -84,19 +91,15 @@ def validate_api(event):
 def validate_payload(event):
     method = event['input']['api']['method']
     endpoint = event['input']['api']['endpoint']
-    payload = event['input']['payload']
+    payload = event['input'].get('payload', {})
     validated_input = {}
 
-    if endpoint == 'generate':
-        validated_input = validate(payload, GENERATE_SCHEMA)
-    elif endpoint == 'chat':
-        validated_input = validate(payload, CHAT_SCHEMA)
-    elif endpoint == 'token-count':
-        validated_input = validate(payload, TOKEN_COUNT_SCHEMA)
-    elif endpoint == 'model' and method == 'POST':
+    if endpoint in VALIDATION_SCHEMAS:
+        validated_input = validate(payload, VALIDATION_SCHEMAS[endpoint])
+    elif endpoint == 'internal/model/load':
         validated_input = validate(payload, MODEL_SCHEMA)
 
-    return endpoint, event['input']['api']['method'], validated_input
+    return endpoint, method, validated_input
 
 
 # ---------------------------------------------------------------------------- #
@@ -120,15 +123,18 @@ def handler(event):
     if 'validated_input' in validated_input:
         payload = validated_input['validated_input']
     else:
-        payload = {}
+        payload = event['input'].get('payload', {})
+
+    # Map to actual OpenAI API endpoint path
+    api_path = ENDPOINT_MAPPING.get(endpoint, f'/v1/{endpoint}')
 
     try:
-        logger.log(f'Sending {method} request to: {endpoint}')
+        logger.log(f'Sending {method} request to: {api_path}')
 
         if method == 'GET':
-            response = send_post_request(endpoint, payload)
+            response = send_get_request(api_path)
         elif method == 'POST':
-            response = send_post_request(endpoint, payload)
+            response = send_post_request(api_path, payload)
     except Exception as e:
         return {
             'error': str(e)
@@ -138,7 +144,7 @@ def handler(event):
 
 
 if __name__ == '__main__':
-    wait_for_service(url=f'{BASE_URI}/model')
+    wait_for_service(url=f'{BASE_URI}/v1/models')
     logger.log('Oobabooga API is ready', 'INFO')
     logger.log('Starting Runpod Serverless...', 'INFO')
     runpod.serverless.start(

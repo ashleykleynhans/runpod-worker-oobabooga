@@ -6,12 +6,11 @@ from util import post_request
 def get_response_output(resp_json):
     if resp_json:
         if 'output' in resp_json:
-            results = resp_json['output']['results']
-
-            if len(results):
-                print(results[0]['text'])
+            output = resp_json['output']
+            if 'choices' in output and len(output['choices']):
+                print(output['choices'][0]['text'])
             else:
-                print('No results output received from endpoint')
+                print('No choices received from endpoint')
                 print(json.dumps(resp_json, indent=4, default=str))
         else:
             print(json.dumps(resp_json, indent=4, default=str))
@@ -22,10 +21,11 @@ if __name__ == '__main__':
         "input": {
             "api": {
                 "method": "POST",
-                "endpoint": "/generate"
+                "endpoint": "completions"
             },
             "payload": {
-                "prompt": "In order to make homemade bread, follow these steps:\n1)"
+                "prompt": "In order to make homemade bread, follow these steps:\n1)",
+                "max_tokens": 250
             }
         }
     }

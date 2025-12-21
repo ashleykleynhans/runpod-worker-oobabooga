@@ -1,20 +1,15 @@
+# Schema for /v1/internal/model/load endpoint
 MODEL_SCHEMA = {
-    'action': {
-        'type': str,
-        'required': True,
-        'constraints': lambda action: action in [
-            'load',
-            'unload',
-            'list',
-            'info'
-        ]
-    },
     'model_name': {
         'type': str,
-        'required': False,
-        'default': 'TheBloke_Pygmalion-13B-SuperHOT-8K-GPTQ'
+        'required': True,
     },
     'args': {
+        'type': dict,
+        'required': False,
+        'default': {}
+    },
+    'settings': {
         'type': dict,
         'required': False,
         'default': {}

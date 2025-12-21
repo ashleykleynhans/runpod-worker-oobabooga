@@ -6,7 +6,7 @@ from util import post_request
 def get_response_output(resp_json):
     if resp_json:
         if 'output' in resp_json:
-            print(json.dumps(resp_json['output']['result'], indent=4, default=str))
+            print(json.dumps(resp_json['output'], indent=4, default=str))
         else:
             print(json.dumps(resp_json, indent=4, default=str))
 
@@ -16,10 +16,9 @@ if __name__ == '__main__':
         "input": {
             "api": {
                 "method": "POST",
-                "endpoint": "/model"
+                "endpoint": "internal/model/load"
             },
             "payload": {
-                "action": "load",
                 "model_name": "TheBloke_Pygmalion-13B-SuperHOT-8K-GPTQ",
                 "args": {}
             }

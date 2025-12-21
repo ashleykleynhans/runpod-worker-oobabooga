@@ -1,4 +1,6 @@
-# Chat API
+# List Models API
+
+OpenAI-compatible endpoint to list available models.
 
 ## Request
 
@@ -6,19 +8,17 @@
 {
   "input": {
     "api": {
-      "method": "POST",
-      "endpoint": "/model"
+      "method": "GET",
+      "endpoint": "models"
     },
-    "payload": {
-      "action": "list"
-    }
+    "payload": {}
   }
 }
 ```
 
 ## Response
 
-### RUN
+### RUN (async)
 
 ```json
 {
@@ -27,7 +27,7 @@
 }
 ```
 
-### RUNSYNC
+### RUNSYNC (sync)
 
 ```json
 {
@@ -35,8 +35,14 @@
     "executionTime": 307,
     "id": "sync-4b4a8565-0018-4802-a453-b336f9d332d7",
     "output": {
-        "result": [
-            "TheBloke_Pygmalion-13B-SuperHOT-8K-GPTQ"
+        "object": "list",
+        "data": [
+            {
+                "id": "TheBloke_Pygmalion-13B-SuperHOT-8K-GPTQ",
+                "object": "model",
+                "created": 1703123456,
+                "owned_by": "text-generation-webui"
+            }
         ]
     },
     "status": "COMPLETED"

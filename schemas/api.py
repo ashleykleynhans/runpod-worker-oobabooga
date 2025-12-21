@@ -10,12 +10,12 @@ API_SCHEMA = {
     'endpoint': {
         'type': str,
         'required': True,
-        'constraints': lambda method: method in [
-            'generate',
-            'chat',
-            'stop-stream',
-            'model',
-            'token-count'
+        'constraints': lambda endpoint: endpoint in [
+            'completions',
+            'chat/completions',
+            'models',
+            'internal/model/load',
+            'internal/model/list'
         ]
     }
 }

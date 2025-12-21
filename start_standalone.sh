@@ -18,7 +18,7 @@ if [ -d "/workspace/text-generation-webui/models/${MODEL}" ]; then
     --loader ExLlama \
     --model ${MODEL} \
     --listen-port 3000 \
-    --api-port 5001 \
+    --api-port 5000 \
     --extensions api \
     --trust-remote-code &> /runpod-volume/logs/textgen.log &
 
