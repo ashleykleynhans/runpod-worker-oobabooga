@@ -1,5 +1,7 @@
 FROM nvidia/cuda:12.8.1-cudnn-devel-ubuntu22.04
 
+ARG PYTHON_VERSION="3.11"
+
 ENV DEBIAN_FRONTEND=noninteractive \
     PIP_PREFER_BINARY=1 \
     PYTHONUNBUFFERED=1
@@ -10,37 +12,32 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN apt update && \
     apt upgrade -y && \
     apt install -y \
+      software-properties-common \
+      curl \
       git \
       git-lfs && \
+    if [ -n "${PYTHON_VERSION}" ]; then \
+        add-apt-repository ppa:deadsnakes/ppa && \
+        apt install -y --no-install-recommends \
+            "python${PYTHON_VERSION}" \
+            "python${PYTHON_VERSION}-dev" \
+            "python${PYTHON_VERSION}-venv" \
+            "python3-tk" && \
+        rm -f /usr/bin/python && \
+        ln -s /usr/bin/python${PYTHON_VERSION} /usr/bin/python && \
+        rm -f /usr/bin/python3 && \
+        ln -s /usr/bin/python${PYTHON_VERSION} /usr/bin/python3 && \
+        curl -sS https://bootstrap.pypa.io/get-pip.py | python${PYTHON_VERSION} && \
+        python3 -m pip install --upgrade --no-cache-dir pip && \
+        rm -f /usr/bin/pip3 && \
+        ln -s /usr/local/bin/pip3 /usr/bin/pip3; \
+    fi && \
     apt autoremove -y && \
     rm -rf /var/lib/apt/lists/* && \
     apt clean -y
 
-if [ -n "${PYTHON_VERSION}" ]; then
-    # Install Python from deadsnakes PPA
-    add-apt-repository ppa:deadsnakes/ppa
-    apt install -y --no-install-recommends \
-        "python${PYTHON_VERSION}" \
-        "python${PYTHON_VERSION}-dev" \
-        "python${PYTHON_VERSION}-venv" \
-        "python3-tk"
-
-    # Link Python
-    rm /usr/bin/python
-    ln -s /usr/bin/python${PYTHON_VERSION} /usr/bin/python
-    rm /usr/bin/python3
-    ln -s /usr/bin/python${PYTHON_VERSION} /usr/bin/python3
-
-    # Install pip
-    curl -sS https://bootstrap.pypa.io/get-pip.py | python${PYTHON_VERSION}
-
-    # Upgrade pip
-    python3 -m pip install --upgrade --no-cache-dir pip
-
-    # Create symlink for pip3
-    rm -f /usr/bin/pip3
-    ln -s /usr/local/bin/pip3 /usr/bin/pip3
-fi
+# Install runpod
+RUN pip3 install runpod==1.7.10
 
 # Docker container start script
 COPY start_network_volume.sh /start.sh
