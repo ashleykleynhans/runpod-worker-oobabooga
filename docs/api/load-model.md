@@ -46,10 +46,8 @@ Internal endpoint to load a model into memory.
     "delayTime": 3451,
     "executionTime": 3655,
     "id": "sync-a6c22f66-7baf-46cf-8476-4f207ef2d913",
-    "output": {
-        "model_name": "Qwen_Qwen2.5-7B-Instruct",
-        "status": "loaded"
-    },
-    "status": "COMPLETED"
+    "output": "OK",
+    "status": "COMPLETED",
+    "workerId": "vdu7ciz2x4tm4o" 
 }
 ```

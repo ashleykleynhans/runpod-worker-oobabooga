@@ -31,7 +31,7 @@ if __name__ == '__main__':
                         "content": "Please give me a step-by-step guide on how to plant a tree in my backyard."
                     }
                 ],
-                "max_tokens": 250
+                "max_tokens": 2000
             }
         }
     }

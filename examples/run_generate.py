@@ -25,7 +25,7 @@ if __name__ == '__main__':
             },
             "payload": {
                 "prompt": "In order to make homemade bread, follow these steps:\n1)",
-                "max_tokens": 250
+                "max_tokens": 1000
             }
         }
     }
