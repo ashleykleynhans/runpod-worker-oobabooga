@@ -47,10 +47,11 @@ pip3 install huggingface_hub runpod==1.7.10
 ```
 8. Download a model, for example `Qwen/Qwen2.5-7B-Instruct`:
 ```bash
-cd /workspace/text-generation-webui
+wget https://raw.githubusercontent.com/ashleykleynhans/runpod-worker-oobabooga/refs/heads/main/download_model.py -O /download_model.py
+chmod +x /download_model.py
+wget https://raw.githubusercontent.com/ashleykleynhans/runpod-worker-oobabooga/refs/heads/main/fetch_model.py
 mkdir -p /workspace/text-generation-webui/user_data/models
-python3 download-model.py Qwen/Qwen2.5-7B-Instruct \
-  --output /workspace/text-generation-webui/user_data/models
+python3 fetch_model.py ${MODEL} /workspace/text-generation-webui/user_data/models
 ```
 9. Everything should now be installed on your Network Volume and it
    should be safe to terminate the pod.
