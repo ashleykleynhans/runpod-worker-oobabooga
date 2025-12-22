@@ -40,15 +40,10 @@ was successful.
 
 ### Available Oobabooga APIs
 
-* [Chat](docs/api/chat.md)
-* [Generate](docs/api/generate.md)
-* [Get Model](docs/api/get-model.md)
+* [Chat Completions](docs/api/chat.md)
+* [Completions](docs/api/generate.md)
 * [List Models](docs/api/list-models.md)
 * [Load Model](docs/api/load-model.md)
-* [Model Info](docs/api/model-info.md)
-* [Stop Stream](docs/api/stop-stream.md)
-* [Token Count](docs/api/token-count.md)
-* [Unload Model](docs/api/unload-model.md)
 
 ### Endpoint Status Codes
 
@@ -81,6 +76,31 @@ with the `input`, and returns the `output` in the JSON response.
 - [Generative Labs YouTube Tutorials](https://www.youtube.com/@generativelabs)
 - [Getting Started With Runpod Serverless](https://trapdoor.cloud/getting-started-with-runpod-serverless/)
 - [Serverless | Create a Custom Basic API](https://blog.runpod.io/serverless-create-a-basic-api/)
+
+## Testing
+
+### Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### Run Tests
+
+Run the test suite with coverage report:
+
+```bash
+pytest
+```
+
+This will run all tests with verbose output and generate a coverage report.
+Coverage reports are generated in both terminal and HTML format (in `htmlcov/`).
+
+### Run Tests Without Coverage
+
+```bash
+pytest --no-cov
+```
 
 ## Community and Contributing
 

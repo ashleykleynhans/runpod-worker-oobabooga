@@ -62,9 +62,11 @@ CHAT_SCHEMA = {
     'character': {
         'type': str,
         'required': False,
+        'default': None,
     },
     'instruction_template': {
         'type': str,
         'required': False,
+        'default': None,
     },
 }

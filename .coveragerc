@@ -1,0 +1,17 @@
+[run]
+source = .
+omit =
+    tests/*
+    setup.py
+    */__pycache__/*
+    examples/*
+    scripts/*
+    download_model.py
+    fetch_model.py
+    create_test_json.py
+
+[report]
+exclude_lines =
+    pragma: no cover
+    if __name__ == .__main__.:
+    raise NotImplementedError
