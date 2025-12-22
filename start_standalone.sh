@@ -11,6 +11,7 @@ echo "Model: ${MODEL}"
 if [ -d "/workspace/text-generation-webui/models/${MODEL}" ]; then
   echo "Starting Oobabooga Text Generation Server"
   cd /workspace/text-generation-webui
+  source /workspace/venv/bin/activate
   mkdir -p /workspace/logs
   nohup python3 server.py \
     --listen \
@@ -24,7 +25,7 @@ if [ -d "/workspace/text-generation-webui/models/${MODEL}" ]; then
 
   echo "Starting Runpod Handler"
   export PYTHONUNBUFFERED=1
-  python3 -u /handler.py
+  /workspace/venv/bin/python3 -u /handler.py
 else
   echo "Model directory not found!"
 fi
