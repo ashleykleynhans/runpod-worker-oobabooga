@@ -4,7 +4,7 @@ set -e
 RELEASE="v3.22"
 TORCH_VERSION="2.7.1"
 PYTHON_VERSION="3.11"
-MODEL="TheBloke/Synthia-34B-v1.2-GPTQ"
+MODEL="Qwen/Qwen2.5-7B-Instruct"
 
 echo "Deleting Oobabooga Text Generation Web UI"
 rm -rf /workspace/text-generation-webui

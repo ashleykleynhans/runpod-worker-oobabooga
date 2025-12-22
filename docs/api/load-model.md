@@ -12,7 +12,7 @@ Internal endpoint to load a model into memory.
       "endpoint": "internal/model/load"
     },
     "payload": {
-      "model_name": "TheBloke_Pygmalion-13B-SuperHOT-8K-GPTQ",
+      "model_name": "Qwen_Qwen2.5-7B-Instruct",
       "args": {},
       "settings": {}
     }
@@ -47,7 +47,7 @@ Internal endpoint to load a model into memory.
     "executionTime": 3655,
     "id": "sync-a6c22f66-7baf-46cf-8476-4f207ef2d913",
     "output": {
-        "model_name": "TheBloke_Pygmalion-13B-SuperHOT-8K-GPTQ",
+        "model_name": "Qwen_Qwen2.5-7B-Instruct",
         "status": "loaded"
     },
     "status": "COMPLETED"

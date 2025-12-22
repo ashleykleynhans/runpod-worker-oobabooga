@@ -38,7 +38,7 @@ OpenAI-compatible endpoint to list available models.
         "object": "list",
         "data": [
             {
-                "id": "TheBloke_Pygmalion-13B-SuperHOT-8K-GPTQ",
+                "id": "Qwen_Qwen2.5-7B-Instruct",
                 "object": "model",
                 "created": 1703123456,
                 "owned_by": "text-generation-webui"

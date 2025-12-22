@@ -169,7 +169,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"input\": {\n    \"api\": {\n      \"method\": \"POST\",\n      \"endpoint\": \"internal/model/load\"\n    },\n    \"payload\": {\n      \"model_name\": \"TheBloke_Pygmalion-13B-SuperHOT-8K-GPTQ\",\n      \"args\": {}\n    }\n  }\n}"
+					"raw": "{\n  \"input\": {\n    \"api\": {\n      \"method\": \"POST\",\n      \"endpoint\": \"internal/model/load\"\n    },\n    \"payload\": {\n      \"model_name\": \"Qwen_Qwen2.5-7B-Instruct\",\n      \"args\": {}\n    }\n  }\n}"
 				},
 				"url": {
 					"raw": "https://api.runpod.ai/v2/{{serverless_api_id}}/run",
@@ -317,7 +317,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"input\": {\n    \"api\": {\n      \"method\": \"POST\",\n      \"endpoint\": \"internal/model/load\"\n    },\n    \"payload\": {\n      \"model_name\": \"TheBloke_Pygmalion-13B-SuperHOT-8K-GPTQ\",\n      \"args\": {}\n    }\n  }\n}"
+					"raw": "{\n  \"input\": {\n    \"api\": {\n      \"method\": \"POST\",\n      \"endpoint\": \"internal/model/load\"\n    },\n    \"payload\": {\n      \"model_name\": \"Qwen_Qwen2.5-7B-Instruct\",\n      \"args\": {}\n    }\n  }\n}"
 				},
 				"url": {
 					"raw": "https://api.runpod.ai/v2/{{serverless_api_id}}/runsync",

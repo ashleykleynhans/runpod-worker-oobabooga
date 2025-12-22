@@ -19,7 +19,7 @@ if __name__ == '__main__':
                 "endpoint": "internal/model/load"
             },
             "payload": {
-                "model_name": "TheBloke_Pygmalion-13B-SuperHOT-8K-GPTQ",
+                "model_name": "Qwen_Qwen2.5-7B-Instruct",
                 "args": {}
             }
         }

@@ -45,11 +45,11 @@ pip3 install --force-reinstall numpy==2.2.* pandas
 ```bash
 pip3 install huggingface_hub runpod==1.7.10
 ```
-8. Download a model, for example `TheBloke/Synthia-34B-v1.2-GPTQ`:
+8. Download a model, for example `Qwen/Qwen2.5-7B-Instruct`:
 ```bash
 cd /workspace/text-generation-webui
 mkdir -p /workspace/text-generation-webui/user_data/models
-python3 download-model.py TheBloke/Synthia-34B-v1.2-GPTQ \
+python3 download-model.py Qwen/Qwen2.5-7B-Instruct \
   --output /workspace/text-generation-webui/user_data/models
 ```
 9. Everything should now be installed on your Network Volume and it

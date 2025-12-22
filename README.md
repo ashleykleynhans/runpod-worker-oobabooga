@@ -7,10 +7,9 @@ LLM text generation AI tasks.
 
 ## Model
 
-The worker uses the [TheBloke/Synthia-34B-v1.2-GPTQ](
-https://huggingface.co/TheBloke/Synthia-34B-v1.2-GPTQ)
-model by [TheBloke](https://huggingface.co/TheBloke).  Feel free to fork
-the repo and switch it to an alternate model.
+The worker uses the [Qwen/Qwen2.5-7B-Instruct](
+https://huggingface.co/Qwen/Qwen2.5-7B-Instruct).
+Feel free to fork the repo and switch it to an alternate model.
 
 ## Building the Docker image that will be used by the Serverless Worker
 
