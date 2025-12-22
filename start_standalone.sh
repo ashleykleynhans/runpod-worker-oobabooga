@@ -8,7 +8,7 @@ fi
 MODEL="${MODEL//\//_}"
 echo "Model: ${MODEL}"
 
-if [ -d "/workspace/text-generation-webui/models/${MODEL}" ]; then
+if [ -d "/workspace/text-generation-webui/user_data/models/${MODEL}" ]; then
   echo "Starting Oobabooga Text Generation Server"
   cd /workspace/text-generation-webui
   source /workspace/venv/bin/activate

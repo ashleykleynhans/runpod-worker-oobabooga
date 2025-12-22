@@ -48,8 +48,9 @@ pip3 install huggingface_hub runpod==1.7.10
 8. Download a model, for example `TheBloke/Synthia-34B-v1.2-GPTQ`:
 ```bash
 cd /workspace/text-generation-webui
+mkdir -p /workspace/text-generation-webui/user_data/models
 python3 download-model.py TheBloke/Synthia-34B-v1.2-GPTQ \
-  --output /workspace/text-generation-webui/models
+  --output /workspace/text-generation-webui/user_data/models
 ```
 9. Everything should now be installed on your Network Volume and it
    should be safe to terminate the pod.

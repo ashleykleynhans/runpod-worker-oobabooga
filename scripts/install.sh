@@ -70,8 +70,9 @@ pip3 install huggingface_hub runpod==1.7.10
 
 echo "Downloading model: ${MODEL}"
 cd /workspace/text-generation-webui
+mkdir -p /workspace/text-generation-webui/user_data/models
 python3 download-model.py ${MODEL} \
-  --output /workspace/text-generation-webui/models
+  --output /workspace/text-generation-webui/user_data/models
 
 echo "Creating log directory"
 mkdir -p /workspace/logs
