@@ -54,6 +54,53 @@ CHAT_SCHEMA = {
         'required': False,
         'default': -1,
     },
+    # Additional OpenAI-compatible parameters
+    'n': {
+        'type': int,
+        'required': False,
+        'default': 1,
+    },
+    'max_completion_tokens': {
+        'type': int,
+        'required': False,
+        'default': None,
+    },
+    'logprobs': {
+        'type': bool,
+        'required': False,
+        'default': False,
+    },
+    'top_logprobs': {
+        'type': int,
+        'required': False,
+        'default': None,
+    },
+    'logit_bias': {
+        'type': dict,
+        'required': False,
+        'default': None,
+    },
+    'response_format': {
+        'type': dict,
+        'required': False,
+        'default': None,
+    },
+    'tools': {
+        'type': list,
+        'required': False,
+        'default': None,
+    },
+    'tool_choice': {
+        'type': (str, dict),
+        'required': False,
+        'default': None,
+    },
+    'user': {
+        'type': str,
+        'required': False,
+        'default': None,
+    },
+    # Oobabooga-specific parameters
     'mode': {
         'type': str,
         'required': False,

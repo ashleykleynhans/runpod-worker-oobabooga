@@ -54,4 +54,40 @@ COMPLETIONS_SCHEMA = {
         'required': False,
         'default': -1,
     },
+    # Additional OpenAI-compatible parameters
+    'suffix': {
+        'type': str,
+        'required': False,
+        'default': None,
+    },
+    'n': {
+        'type': int,
+        'required': False,
+        'default': 1,
+    },
+    'logprobs': {
+        'type': int,
+        'required': False,
+        'default': None,
+    },
+    'echo': {
+        'type': bool,
+        'required': False,
+        'default': False,
+    },
+    'best_of': {
+        'type': int,
+        'required': False,
+        'default': 1,
+    },
+    'logit_bias': {
+        'type': dict,
+        'required': False,
+        'default': None,
+    },
+    'user': {
+        'type': str,
+        'required': False,
+        'default': None,
+    },
 }
