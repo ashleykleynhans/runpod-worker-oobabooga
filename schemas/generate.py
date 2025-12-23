@@ -1,5 +1,10 @@
 # OpenAI-compatible completions schema for /v1/completions endpoint
 COMPLETIONS_SCHEMA = {
+    'model': {
+        'type': str,
+        'required': False,
+        'default': None,
+    },
     'prompt': {
         'type': str,
         'required': True

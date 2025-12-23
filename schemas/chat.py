@@ -1,5 +1,10 @@
 # OpenAI-compatible chat completions schema for /v1/chat/completions endpoint
 CHAT_SCHEMA = {
+    'model': {
+        'type': str,
+        'required': False,
+        'default': None,
+    },
     'messages': {
         'type': list,
         'required': True
