@@ -1,6 +1,7 @@
-FROM nvidia/cuda:12.8.1-cudnn-devel-ubuntu22.04
+ARG CUDA_VERSION=12.8.1
+FROM nvidia/cuda:${CUDA_VERSION}-cudnn-devel-ubuntu22.04
 
-ARG PYTHON_VERSION="3.11"
+ARG PYTHON_VERSION="3.13"
 
 ENV DEBIAN_FRONTEND=noninteractive \
     PIP_PREFER_BINARY=1 \

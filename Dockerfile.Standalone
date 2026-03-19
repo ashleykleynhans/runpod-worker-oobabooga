@@ -1,7 +1,9 @@
-FROM nvidia/cuda:12.8.1-cudnn-devel-ubuntu22.04
+ARG CUDA_VERSION=12.8.1
+FROM nvidia/cuda:${CUDA_VERSION}-cudnn-devel-ubuntu22.04
 
-ARG OOBABOOGA_RELEASE=v3.22
-ARG PYTHON_VERSION="3.11"
+ARG OOBABOOGA_RELEASE=v4.1.1
+ARG PYTHON_VERSION="3.13"
+ARG TORCH_VERSION="2.9.1"
 ARG MODEL="Qwen/Qwen2.5-7B-Instruct"
 
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -44,7 +46,7 @@ RUN git clone https://github.com/oobabooga/text-generation-webui && \
     git checkout ${OOBABOOGA_RELEASE} && \
     python3 -m venv /workspace/venv && \
     source /workspace/venv/bin/activate && \
-    pip3 install --no-cache-dir torch==2.7.1 torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128 && \
+    pip3 install --no-cache-dir torch==${TORCH_VERSION} torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128 && \
     pip3 install -r requirements/full/requirements.txt && \
     bash -c 'for req in extensions/*/requirements.txt ; do pip3 install -r "$req" ; done' && \
     pip3 install --force-reinstall numpy==2.2.* pandas && \
